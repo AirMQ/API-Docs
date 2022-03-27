@@ -72,4 +72,5 @@ typings/
 # Junk dirs
 Junk/
 
+# VSCode stuff
 .vscode/
