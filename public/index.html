@@ -1,0 +1,1350 @@
+<!doctype html>
+<html class="no-js" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="images/favicon.png" sizes="32x32">
+    <title>AirMQ API Docs</title>
+    <link rel="stylesheet" href="stylesheets/spectaql.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600&display=swap" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <script src="javascripts/spectaql.min.js"></script>
+  </head>
+  <body id="spectacle">
+    <div id="page" class="drawer-layout drawer-slide-right-large">
+      <div id="sidebar">
+        <button id="close-button" class="close-button" aria-label="Close menu" type="button" data-drawer-close>
+          <span aria-hidden="true">×</span>
+        </button>
+        <div id="logo">
+          <img src="images/logo.png" title="AirMQ GraphQL API Documentation" /> </div>
+        <nav id="nav" role="navigation">
+          <h5>Introduction</h5>
+          <a href="#introduction">Welcome</a>
+          <a href="#intro-item-0">Playground</a>
+          <a href="#intro-item-1">Authorization</a>
+          <h5>Operations</h5>
+          <a href="#operation-cityaverage-Queries"> cityAverage </a>
+          <a href="#operation-cityaverages-Queries"> cityAverages </a>
+          <a href="#operation-citylist-Queries"> cityList </a>
+          <a href="#operation-location-Queries"> location </a>
+          <a href="#operation-locations-Queries"> locations </a>
+          <h5>Types</h5>
+          <a href="#definition-City"> City </a>
+          <a href="#definition-CityName"> CityName </a>
+          <a href="#definition-ISODate"> ISODate </a>
+          <a href="#definition-LastFilter"> LastFilter </a>
+          <a href="#definition-Location"> Location </a>
+          <a href="#definition-LocationFilter"> LocationFilter </a>
+          <a href="#definition-LocationsFilter"> LocationsFilter </a>
+          <a href="#definition-MeanFilter"> MeanFilter </a>
+          <a href="#definition-SensorData"> SensorData </a>
+          <a href="#definition-Status"> Status </a>
+          <a href="#definition-TimeSpan"> TimeSpan </a>
+        </nav>
+      </div>
+      <div id="docs" class="row collapse expanded drawer" data-drawer>
+        <button class="floating-menu-icon" type="button" data-drawer-slide="right">
+          <span class="hamburger"></span>
+        </button>
+        <div class="example-box doc-content"></div>
+        <article id="content">
+          <h1 class="doc-title">AirMQ GraphQL API Documentation</h1>
+          <div id="introduction" data-traverse-target="introduction">
+            <div class="doc-row">
+              <div class="doc-copy">
+                <p>This documentation contains description of all API queries, responses and respective data types.
+                  <br>
+                  <br> All requests to the API are POST.
+                  <br>
+                  <br> Please expect upcoming blog post with API usage examples and best practices.
+                  <br>
+                  <br>
+                  <a href="http://t.me/airmq" target="_blank">AirMQ Telegram channel</a> is a good place to ask questions and get answers.
+                  <br>
+                  <br>
+                  <br>
+                </p>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Contact</h5>
+                  <p> AirMQ Team
+                    <br/>
+                    <a href="mailto:info@airmq.by">info@airmq.by</a>
+                  </p>
+                  <h5>License</h5>
+                  <p> Apache 2.0
+                    <br/>
+                    <a href="https://www.apache.org/licenses/LICENSE-2.0.html">https://www.apache.org/licenses/LICENSE-2.0.html</a>
+                  </p>
+                  <p>Terms of Service:
+                    <a href="https://api-docs.airmq.cc/terms">https://api-docs.airmq.cc/terms</a>
+                  </p>
+                  <h5>API Endpoints</h5> <pre><code>Public API:
+https://api.airmq.cc
+GraphQL Playground interface:
+https://api.airmq.cc/playground
+</code></pre> </section>
+              </div>
+            </div>
+            <div id="intro-item-0" data-traverse-target="intro-item-0">
+              <div class="doc-row">
+                <h5 class="doc-intro-item">Playground</h5>
+                <div class="doc-copy">
+                  <p>For testing purposes, API data can be accessed interactively with web-based
+                    <a href="https://www.apollographql.com/docs/apollo-server/v2/testing/graphql-playground" target="_blank">GraphQL Playground IDE</a> using following URL&#58;
+                    <a href="https://api.airmq.cc/playground" target="_blank">https://api.airmq.cc/playground</a>
+                  </p>
+                </div>
+                <div class="doc-examples"> </div>
+              </div>
+            </div>
+            <div id="intro-item-1" data-traverse-target="intro-item-1">
+              <div class="doc-row">
+                <h5 class="doc-intro-item">Authorization</h5>
+                <div class="doc-copy">
+                  <p>This API uses token-based authorization. All requests must supply an HTTP <code>Authorization</code> header with provided token as payload. To request a token, please apply to our
+                    <a href="http://t.me/airmq" target="_blank">Telegram channel</a>.</p>
+                </div>
+                <div class="doc-examples"> </div>
+              </div>
+            </div>
+          </div>
+          <h1>Queries</h1>
+          <span id="path-cityaverage"></span>
+          <div id="operation-cityaverage-Queries" class="operation panel" data-traverse-target="operation-cityaverage-Queries">
+            <h2 class="operation-name "> <code>cityAverage</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> Query for current weighted values per city or id list </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-SensorData"><code>SensorData</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>filter</code> -
+                        <a href="#definition-LastFilter"><code>LastFilter</code></a>
+                      </td>
+                      <td> </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> cityAverage<span class="hljs-tag">(<span class="hljs-code">$filter</span>:<span class="hljs-type"> LastFilter)</span> {
+  cityAverage(filter: <span class="hljs-code">$filter</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">time</span>
+    <span class="hljs-symbol">Temp</span>
+    <span class="hljs-symbol">Hum</span>
+    <span class="hljs-symbol">Press</span>
+    <span class="hljs-symbol">PMS1</span>
+    <span class="hljs-symbol">PMS25</span>
+    <span class="hljs-symbol">PMS10</span>
+    <span class="hljs-symbol">Count</span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"filter"</span>: {<span class="hljs-attr">"city"</span>: <span class="hljs-string">'Homiel'</span>, <span class="hljs-attr">"interval_m"</span>: <span class="hljs-number">30</span>}}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"cityAverage"</span>: {
+      <span class="hljs-attr">"time"</span>: <span class="hljs-string">"2021-11-21T16:34:27.191Z"</span>,
+      <span class="hljs-attr">"Temp"</span>: <span class="hljs-string">"-10.05"</span>,
+      <span class="hljs-attr">"Hum"</span>: <span class="hljs-string">"36.31"</span>,
+      <span class="hljs-attr">"Press"</span>: <span class="hljs-string">"985.99"</span>,
+      <span class="hljs-attr">"PMS1"</span>: <span class="hljs-string">"3.49"</span>,
+      <span class="hljs-attr">"PMS25"</span>: <span class="hljs-string">"4.17"</span>,
+      <span class="hljs-attr">"PMS10"</span>: <span class="hljs-string">"6.22"</span>,
+      <span class="hljs-attr">"Count"</span>: <span class="hljs-string">"0.112"</span>
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path-cityaverages"></span>
+          <div id="operation-cityaverages-Queries" class="operation panel" data-traverse-target="operation-cityaverages-Queries">
+            <h2 class="operation-name "> <code>cityAverages</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> Time series of average values per city or id list </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns
+                  <a href="#definition-SensorData"><code>[SensorData]</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>filter</code> -
+                        <a href="#definition-MeanFilter"><code>MeanFilter</code></a>
+                      </td>
+                      <td> </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> cityAverages<span class="hljs-tag">(<span class="hljs-code">$filter</span>:<span class="hljs-type"> MeanFilter)</span> {
+  cityAverages(filter: <span class="hljs-code">$filter</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">time</span>
+    <span class="hljs-symbol">Temp</span>
+    <span class="hljs-symbol">Hum</span>
+    <span class="hljs-symbol">Press</span>
+    <span class="hljs-symbol">PMS1</span>
+    <span class="hljs-symbol">PMS25</span>
+    <span class="hljs-symbol">PMS10</span>
+    <span class="hljs-symbol">Count</span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"filter"</span>: {
+    <span class="hljs-attr">"city"</span>: <span class="hljs-string">'Вiцебск'</span>,
+    <span class="hljs-attr">"t_from"</span>: <span class="hljs-string">'2021-09-07T01:08:03.420Z'</span>,
+    <span class="hljs-attr">"t_to"</span>: <span class="hljs-string">'2021-10-08T01:08:03.420Z'</span>,
+    <span class="hljs-attr">"interval_m"</span>: <span class="hljs-number">30</span>
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"cityAverages"</span>: [
+      {
+        <span class="hljs-attr">"time"</span>: <span class="hljs-string">"2021-11-21T16:34:27.191Z"</span>,
+        <span class="hljs-attr">"Temp"</span>: <span class="hljs-string">"-10.05"</span>,
+        <span class="hljs-attr">"Hum"</span>: <span class="hljs-string">"36.31"</span>,
+        <span class="hljs-attr">"Press"</span>: <span class="hljs-string">"985.99"</span>,
+        <span class="hljs-attr">"PMS1"</span>: <span class="hljs-string">"3.49"</span>,
+        <span class="hljs-attr">"PMS25"</span>: <span class="hljs-string">"4.17"</span>,
+        <span class="hljs-attr">"PMS10"</span>: <span class="hljs-string">"6.22"</span>,
+        <span class="hljs-attr">"Count"</span>: <span class="hljs-string">"0.112"</span>
+      }
+    ]
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path-citylist"></span>
+          <div id="operation-citylist-Queries" class="operation panel" data-traverse-target="operation-citylist-Queries">
+            <h2 class="operation-name "> <code>cityList</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> List of all cities in the country with AirMQ sensors installed </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns
+                  <a href="#definition-City"><code>[City]</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>countryCode</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> cityList<span class="hljs-tag">(<span class="hljs-code">$countryCode</span>:<span class="hljs-type"> String)</span> {
+  cityList(countryCode: <span class="hljs-code">$countryCode</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">_id</span>
+    <span class="hljs-symbol">countryCode</span>
+    <span class="hljs-symbol">cityName <span class="hljs-tag">{
+      <span class="hljs-type">...CityNameFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">locationCount</span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"countryCode"</span>: <span class="hljs-string">"BY"</span>}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"cityList"</span>: [
+      {
+        <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"BY06001"</span>,
+        <span class="hljs-attr">"countryCode"</span>: <span class="hljs-string">"BY"</span>,
+        <span class="hljs-attr">"cityName"</span>: <span class="hljs-string">CityName</span>,
+        <span class="hljs-attr">"locationCount"</span>: <span class="hljs-number">15</span>
+      }
+    ]
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path-location"></span>
+          <div id="operation-location-Queries" class="operation panel" data-traverse-target="operation-location-Queries">
+            <h2 class="operation-name "> <code>location</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> Query for single sensor location. Returns location info and sensor data. </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns a
+                  <a href="#definition-Location"><code>Location</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>filter</code> -
+                        <a href="#definition-LocationFilter"><code>LocationFilter</code></a>
+                      </td>
+                      <td> </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> location<span class="hljs-tag">(<span class="hljs-code">$filter</span>:<span class="hljs-type"> LocationFilter)</span> {
+  location(filter: <span class="hljs-code">$filter</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">_id</span>
+    <span class="hljs-symbol">city</span>
+    <span class="hljs-symbol">name</span>
+    <span class="hljs-symbol">isOnline</span>
+    <span class="hljs-symbol">latitude</span>
+    <span class="hljs-symbol">longitude</span>
+    <span class="hljs-symbol">status <span class="hljs-tag">{
+      <span class="hljs-type">...StatusFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">currentValue <span class="hljs-tag">{
+      <span class="hljs-type">...SensorDataFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">timeSeries <span class="hljs-tag">{
+      <span class="hljs-type">...SensorDataFragment</span>
+    }</span></span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"filter"</span>: {<span class="hljs-attr">"_id"</span>: <span class="hljs-string">'BY01001060'</span>}}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"location"</span>: {
+      <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"BY01001060"</span>,
+      <span class="hljs-attr">"city"</span>: <span class="hljs-string">"Brest"</span>,
+      <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Тэхнапарк"</span>,
+      <span class="hljs-attr">"isOnline"</span>: <span class="hljs-literal">false</span>,
+      <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">53.88022411496701</span>,
+      <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">29.86211252212241</span>,
+      <span class="hljs-attr">"status"</span>: <span class="hljs-string">Status</span>,
+      <span class="hljs-attr">"currentValue"</span>: <span class="hljs-string">SensorData</span>,
+      <span class="hljs-attr">"timeSeries"</span>: [<span class="hljs-string">SensorData</span>]
+    }
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="path-locations"></span>
+          <div id="operation-locations-Queries" class="operation panel" data-traverse-target="operation-locations-Queries">
+            <h2 class="operation-name "> <code>locations</code> </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-operation-description operation-description"> Query for multiple sensor locations. Returns array of location info and sensor data </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="swagger-request-body"> </section>
+                <section class="swagger-responses"> Returns
+                  <a href="#definition-Location"><code>[Location]</code></a>
+                </section>
+                <br>
+                <section class="swagger-request-params">
+                  <table>
+                    <tr>
+                      <th>Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>filter</code> -
+                        <a href="#definition-LocationsFilter"><code>LocationsFilter</code></a>
+                      </td>
+                      <td> </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h4>Example</h4>
+                  <h5>Query</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol"><span class="hljs-keyword">query</span> locations<span class="hljs-tag">(<span class="hljs-code">$filter</span>:<span class="hljs-type"> LocationsFilter)</span> {
+  locations(filter: <span class="hljs-code">$filter</span>)</span> <span class="hljs-tag">{
+    <span class="hljs-symbol">_id</span>
+    <span class="hljs-symbol">city</span>
+    <span class="hljs-symbol">name</span>
+    <span class="hljs-symbol">isOnline</span>
+    <span class="hljs-symbol">latitude</span>
+    <span class="hljs-symbol">longitude</span>
+    <span class="hljs-symbol">status <span class="hljs-tag">{
+      <span class="hljs-type">...StatusFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">currentValue <span class="hljs-tag">{
+      <span class="hljs-type">...SensorDataFragment</span>
+    }</span></span>
+    <span class="hljs-symbol">timeSeries <span class="hljs-tag">{
+      <span class="hljs-type">...SensorDataFragment</span>
+    }</span></span>
+  }</span></span>
+}
+</code></pre> </body>
+                  </html>
+                  <h5>Variables</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{<span class="hljs-attr">"filter"</span>: {<span class="hljs-attr">"city"</span>: <span class="hljs-string">'Брэст'</span>, <span class="hljs-attr">"isOnline"</span>: <span class="hljs-literal">true</span>}}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+            <div class="doc-row">
+              <div class="doc-copy"> </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Response </h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"data"</span>: {
+    <span class="hljs-attr">"locations"</span>: [
+      {
+        <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"BY01001060"</span>,
+        <span class="hljs-attr">"city"</span>: <span class="hljs-string">"Brest"</span>,
+        <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Тэхнапарк"</span>,
+        <span class="hljs-attr">"isOnline"</span>: <span class="hljs-literal">true</span>,
+        <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">53.88022411496701</span>,
+        <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">29.86211252212241</span>,
+        <span class="hljs-attr">"status"</span>: <span class="hljs-string">Status</span>,
+        <span class="hljs-attr">"currentValue"</span>: <span class="hljs-string">SensorData</span>,
+        <span class="hljs-attr">"timeSeries"</span>: [<span class="hljs-string">SensorData</span>]
+      }
+    ]
+  }
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <span id="tag-types"></span>
+          <h1>Types</h1>
+          <div id="definition-City" class="definition panel" data-traverse-target="definition-City">
+            <h2 class="panel-title">
+              <a name="/definitions/City"></a>
+              <p><code>City</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>City details</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="_id"> <code>_id</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> City id </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="countryCode"> <code>countryCode</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> 2-symbol country code </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="cityName"> <code>cityName</code> -
+                        <a href="#definition-CityName"><code>CityName</code></a>
+                      </td>
+                      <td> CityName object </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="locationCount"> <code>locationCount</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> Number of sensor locations within city boundaries </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"BY06001"</span>,
+  <span class="hljs-attr">"countryCode"</span>: <span class="hljs-string">"BY"</span>,
+  <span class="hljs-attr">"cityName"</span>: <span class="hljs-string">CityName</span>,
+  <span class="hljs-attr">"locationCount"</span>: <span class="hljs-number">15</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-CityName" class="definition panel" data-traverse-target="definition-CityName">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/CityName"></a>
+              <p><code>CityName</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>City Names</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="be"> <code>be</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> City name in belarusian </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="ru"> <code>ru</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> City name in russian </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="en"> <code>en</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> City name in english </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"be"</span>: <span class="hljs-string">"Вiцебск"</span>,
+  <span class="hljs-attr">"ru"</span>: <span class="hljs-string">"Витебск"</span>,
+  <span class="hljs-attr">"en"</span>: <span class="hljs-string">"Viciebsk"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-ISODate" class="definition panel" data-traverse-target="definition-ISODate">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/ISODate"></a>
+              <p><code>ISODate</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>A custom scalar that returns date and time in ISO 8601 format</p>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-gql"><span class="hljs-symbol">"2020-10-07T01:08:03.420Z"</span>
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LastFilter" class="definition panel" data-traverse-target="definition-LastFilter">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LastFilter"></a>
+              <p><code>LastFilter</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Input values to filter the query</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>city</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>City name in any (be, ru, en) language</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_d</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>0</code> </td>
+                      <td>
+                        <p>Averaging interval, days</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_h</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>0</code> </td>
+                      <td>
+                        <p>Averaging interval, hours</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_m</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>15</code> </td>
+                      <td>
+                        <p>Averaging interval, minutes, default = 15</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"city"</span>: <span class="hljs-string">"Брэст"</span>,
+  <span class="hljs-attr">"interval_d"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"interval_h"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"interval_m"</span>: <span class="hljs-number">15</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Location" class="definition panel" data-traverse-target="definition-Location">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/Location"></a>
+              <p><code>Location</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Object containing sensor location info and sensor data</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="_id"> <code>_id</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> Location ID </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="city"> <code>city</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> City name in English </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="name"> <code>name</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> Location name </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="isOnline"> <code>isOnline</code> -
+                        <a href="#definition-Boolean"><code>Boolean</code></a>
+                      </td>
+                      <td> Location online state </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="latitude"> <code>latitude</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> Location latitude </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="longitude"> <code>longitude</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> Location longitude </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="status"> <code>status</code> -
+                        <a href="#definition-Status"><code>Status</code></a>
+                      </td>
+                      <td> Location telemetry info </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="currentValue"> <code>currentValue</code> -
+                        <a href="#definition-SensorData"><code>SensorData</code></a>
+                      </td>
+                      <td> Returns current measurements. Should be supplied with interval argument from
+                        <a href="#definition-TimeSpan"><code>TimeSpan</code></a> input filter </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="no-top-border">
+                        <div class="field-arguments">
+                          <p class="field-arguments-header"> Arguments </p>
+                          <div class="field-argument">
+                            <p class="field-argument-name"><code>input</code> -
+                              <a href="#definition-TimeSpan"><code>TimeSpan</code></a>
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="timeSeries"> <code>timeSeries</code> -
+                        <a href="#definition-SensorData"><code>[SensorData]</code></a>
+                      </td>
+                      <td> Returns series of measurements. Should be supplied with
+                        <a href="#definition-TimeSpan"><code>TimeSpan</code></a> input filter </td>
+                    </tr>
+                    <tr>
+                      <td colspan="2" class="no-top-border">
+                        <div class="field-arguments">
+                          <p class="field-arguments-header"> Arguments </p>
+                          <div class="field-argument">
+                            <p class="field-argument-name"><code>input</code> -
+                              <a href="#definition-TimeSpan"><code>TimeSpan</code></a>
+                            </p>
+                          </div>
+                        </div>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"BY01001060"</span>,
+  <span class="hljs-attr">"city"</span>: <span class="hljs-string">"Brest"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Тэхнапарк"</span>,
+  <span class="hljs-attr">"isOnline"</span>: <span class="hljs-literal">true</span>,
+  <span class="hljs-attr">"latitude"</span>: <span class="hljs-number">53.88022411496701</span>,
+  <span class="hljs-attr">"longitude"</span>: <span class="hljs-number">29.86211252212241</span>,
+  <span class="hljs-attr">"status"</span>: <span class="hljs-string">Status</span>,
+  <span class="hljs-attr">"currentValue"</span>: <span class="hljs-string">SensorData</span>,
+  <span class="hljs-attr">"timeSeries"</span>: [<span class="hljs-string">SensorData</span>]
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationFilter" class="definition panel" data-traverse-target="definition-LocationFilter">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationFilter"></a>
+              <p><code>LocationFilter</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Single location filter</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>_id</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>Location id</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>name</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>Location name</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"BY05001023"</span>,
+  <span class="hljs-attr">"name"</span>: <span class="hljs-string">"Serabranka"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-LocationsFilter" class="definition panel" data-traverse-target="definition-LocationsFilter">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/LocationsFilter"></a>
+              <p><code>LocationsFilter</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Multiple locations filter</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>_id</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>Location id</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>city</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>City name in any language</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>countryCode</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>2-symbol country code</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>isOnline</code> -
+                        <a href="#definition-Boolean"><code>Boolean</code></a>
+                      </td>
+                      <td>
+                        <p>Show only online or offline locations</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"_id"</span>: <span class="hljs-string">"BY01001045"</span>,
+  <span class="hljs-attr">"city"</span>: <span class="hljs-string">"Брест"</span>,
+  <span class="hljs-attr">"countryCode"</span>: <span class="hljs-string">"BY"</span>,
+  <span class="hljs-attr">"isOnline"</span>: <span class="hljs-literal">true</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-MeanFilter" class="definition panel" data-traverse-target="definition-MeanFilter">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/MeanFilter"></a>
+              <p><code>MeanFilter</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Input values to filter the query. Mandatory fields are marked with <code>!</code></p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>city</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td>
+                        <p>City name in any (be, ru, en) language</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>t_from</code> -
+                        <a href="#definition-ISODate"><code>ISODate!</code></a>
+                      </td>
+                      <td>
+                        <p>Start time in ISO 8601 format. Mandatory</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>t_to</code> -
+                        <a href="#definition-ISODate"><code>ISODate!</code></a>
+                      </td>
+                      <td>
+                        <p>End time in ISO 8601 format. Mandatory</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_d</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>0</code> </td>
+                      <td>
+                        <p>Averaging interval, days</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_h</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>0</code> </td>
+                      <td>
+                        <p>Averaging interval, hours</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_m</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>15</code> </td>
+                      <td>
+                        <p>Averaging interval, minutes, default = 15</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"city"</span>: <span class="hljs-string">"Brest"</span>,
+  <span class="hljs-attr">"t_from"</span>: <span class="hljs-string">"2021-09-07T01:08:03.420Z"</span>,
+  <span class="hljs-attr">"t_to"</span>: <span class="hljs-string">"2021-10-08T01:08:03.420Z"</span>,
+  <span class="hljs-attr">"interval_d"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"interval_h"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"interval_m"</span>: <span class="hljs-number">30</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-SensorData" class="definition panel" data-traverse-target="definition-SensorData">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/SensorData"></a>
+              <p><code>SensorData</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p> Sensor values</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="time"> <code>time</code> -
+                        <a href="#definition-ISODate"><code>ISODate</code></a>
+                      </td>
+                      <td> Time in ISO 8601 format, UTC time </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="Temp"> <code>Temp</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> Temperature, °C </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="Hum"> <code>Hum</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> Relative humidity, % </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="Press"> <code>Press</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> Air pressure, hPa </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="PMS1"> <code>PMS1</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> PM1 particulate matter, μg/m³ </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="PMS25"> <code>PMS25</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> PM2.5 particulate matter, μg/m³ </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="PMS10"> <code>PMS10</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> PM10 particulate matter, μg/m³ </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="Count"> <code>Count</code> -
+                        <a href="#definition-Float"><code>Float</code></a>
+                      </td>
+                      <td> Ambient radioactivity, μSv/h </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"time"</span>: <span class="hljs-string">"2021-11-21T16:34:27.191Z"</span>,
+  <span class="hljs-attr">"Temp"</span>: <span class="hljs-string">"-10.05"</span>,
+  <span class="hljs-attr">"Hum"</span>: <span class="hljs-string">"36.31"</span>,
+  <span class="hljs-attr">"Press"</span>: <span class="hljs-string">"985.99"</span>,
+  <span class="hljs-attr">"PMS1"</span>: <span class="hljs-string">"3.49"</span>,
+  <span class="hljs-attr">"PMS25"</span>: <span class="hljs-string">"4.17"</span>,
+  <span class="hljs-attr">"PMS10"</span>: <span class="hljs-string">"6.22"</span>,
+  <span class="hljs-attr">"Count"</span>: <span class="hljs-string">"0.112"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-Status" class="definition panel" data-traverse-target="definition-Status">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/Status"></a>
+              <p><code>Status</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Sensor telemetry</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Field Name</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td data-property-name="RSSI"> <code>RSSI</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> WiFi signal strength, dB </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="build"> <code>build</code> -
+                        <a href="#definition-String"><code>String</code></a>
+                      </td>
+                      <td> Sensor firmware version </td>
+                    </tr>
+                    <tr>
+                      <td data-property-name="uptime"> <code>uptime</code> -
+                        <a href="#definition-Int"><code>Int</code></a>
+                      </td>
+                      <td> Location uptime, minutes </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"RSSI"</span>: <span class="hljs-string">"-75"</span>,
+  <span class="hljs-attr">"build"</span>: <span class="hljs-string">"20210819TZV-noDebug"</span>,
+  <span class="hljs-attr">"uptime"</span>: <span class="hljs-string">"360"</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div id="definition-TimeSpan" class="definition panel" data-traverse-target="definition-TimeSpan">
+            <div class="definition-tags">
+              <a class="label" href="#tag-types">Types</a>
+            </div>
+            <h2 class="panel-title">
+              <a name="/definitions/TimeSpan"></a>
+              <p><code>TimeSpan</code></p>
+            </h2>
+            <div class="doc-row">
+              <div class="doc-copy">
+                <section class="json-schema-description">
+                  <p>Time span and interval</p>
+                </section>
+                <section class="json-schema-properties-blank">
+                  <table>
+                    <tr>
+                      <th>Input Field</th>
+                      <th>Description</th>
+                    </tr>
+                    <tr>
+                      <td><code>t_from</code> -
+                        <a href="#definition-ISODate"><code>ISODate</code></a>
+                      </td>
+                      <td>
+                        <p>Start time in ISO 8601 format</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>t_to</code> -
+                        <a href="#definition-ISODate"><code>ISODate</code></a>
+                      </td>
+                      <td>
+                        <p>End time in ISO 8601 format</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_d</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>0</code> </td>
+                      <td>
+                        <p>Averaging interval, days</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_h</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>0</code> </td>
+                      <td>
+                        <p>Averaging interval, hours</p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><code>interval_m</code> -
+                        <a href="#definition-Int"><code>Int</code></a> default = <code>15</code> </td>
+                      <td>
+                        <p>Averaging interval, minutes, default = 15</p>
+                      </td>
+                    </tr>
+                  </table>
+                </section>
+              </div>
+              <div class="doc-examples">
+                <section>
+                  <h5>Example</h5>
+                  <html>
+                  <head></head>
+                  <body><pre><code class="hljs language-json">{
+  <span class="hljs-attr">"t_from"</span>: <span class="hljs-string">"2021-09-07T01:08:03.420Z"</span>,
+  <span class="hljs-attr">"t_to"</span>: <span class="hljs-string">"2021-10-07T01:08:03.420Z"</span>,
+  <span class="hljs-attr">"interval_d"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"interval_h"</span>: <span class="hljs-number">0</span>,
+  <span class="hljs-attr">"interval_m"</span>: <span class="hljs-number">15</span>
+}
+</code></pre> </body>
+                  </html>
+                </section>
+              </div>
+            </div>
+          </div>
+          <div class="doc-row no-margin">
+            <div class="doc-copy doc-separator">
+              <a class="powered-by" href="https://github.com/anvilco/spectaql">Documentation by
+                <span>Anvil SpectaQL</span>
+              </a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </body>
+</html>

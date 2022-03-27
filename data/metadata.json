@@ -1,0 +1,335 @@
+{
+    "OBJECT": {
+      "Subscription": {
+        "documentation": { "undocumented": true }
+      },
+      "User": {
+        "documentation": { "undocumented": true }
+      },
+      "Marker": {
+        "documentation": { "undocumented": true }
+      },
+
+      "Location": {
+        "fields": {
+            "_id": {
+                "documentation": { "example": "BY01001060"}
+              },
+            "name": {
+                "documentation": { "example": "Тэхнапарк"}
+              },
+            "city": {
+                "documentation": { "example": "Brest"}
+              },
+            "deviceId": {
+                "documentation": { "undocumented": true }
+              },
+            "latitude": {
+                "documentation": { "example": 53.88022411496701}
+              },
+            "longitude": {
+                "documentation": { "example": 29.86211252212241}
+              },
+            "ownerId": {
+                "documentation": { "undocumented": true}
+            },
+            "isPublic": {
+                "documentation": { "undocumented": true}
+            },
+            "isPrivate": {
+                "documentation": { "undocumented": true}
+            },
+            "user": {
+                "documentation": { "undocumented": true}
+            }
+        }
+      },
+      "Status": {
+        "fields": {
+            "_id": {
+                "documentation": {"undocumented": true}
+              },
+            "build": {
+                "documentation": { "example": "20210819TZV-noDebug"}
+              },
+            "uptime": {
+                "documentation": { "example": "360"}
+              },
+            "RSSI": {
+                "documentation": {"example": "-75"}
+              },
+            "ext_ip": {
+                "documentation": { "undocumented": true }
+              },
+            "local_ip": {
+                "documentation": {"undocumented": true}
+              },
+            "isOnline": {
+                "documentation": {"undocumented": true}
+              },
+            "start": {
+                "documentation": { "undocumented": true}
+            }
+        }
+      },
+      "SensorData": {
+        "fields": {
+            "time": {
+                "documentation": {"example": "2021-11-21T16:34:27.191Z"}
+              },
+            "Temp": {
+                "documentation": { "example": "-10.05"}
+              },
+            "Hum": {
+                "documentation": { "example": "36.31"}
+              },
+            "Press": {
+                "documentation": {"example": "985.99"}
+              },
+            "PMS1": {
+                "documentation": {"example": "3.49"}
+              },
+            "PMS25": {
+                "documentation": {"example": "4.17"}
+              },
+            "PMS10": {
+                "documentation": {"example": "6.22"}
+              },
+            "Count": {
+                "documentation": {"example": "0.112"}
+            }
+        }
+      },
+      "AuthResponse": {
+        "documentation": {"undocumented": true},
+        "fields": {
+          "token": {
+            "documentation": {"example": "ya44.ajhF8J7Fndsg09_thV_arj55G7OCGW_FN8uNG9Kf4Db70_iF8f7OPxADlkjLKj7GFs22joiKZktViII8nG04CawDE"}
+          },
+          "id": {
+            "documentation": {"example": "61987jEa3690co8iL6s3d"}
+          }
+        }
+      },
+      "City": {
+        "fields": {
+          "countryCode": {
+            "documentation": {"example": "BY"}
+          },
+          "_id": {
+            "documentation": {"example": "BY06001"}
+          },
+          "locationCount": {
+            "documentation": {"example": 15}
+          }
+        }
+      },
+      "CityName": {
+        "fields": {
+          "be": {
+            "documentation": {"example": "Вiцебск"}
+          },
+          "ru": {
+            "documentation": {"example": "Витебск"}
+          },
+          "en": {
+            "documentation": {"example": "Viciebsk"}
+          }
+        }
+      },
+      "Me": {
+        "fields": {
+          "id": {
+            "documentation": {"example": "61987je4A3690co8ip6sxd"}
+          },
+          "ExpiryDate": {
+            "documentation": {"example": "2069-11-13T10:03:27.000Z"}
+          },
+          "apiRoles": {
+            "documentation": {"example": ["apiUser"]}
+          }
+        }
+      },
+      "Query": {
+        "fields": {
+          "location": {
+            "args": {
+              "filter": {
+                "documentation": { "example": {"_id": "'BY01001060'"} }
+              }
+            }
+          },
+          "locations": {
+            "args": {
+              "filter": {
+                "documentation": { "example": {"city": "'Брэст'", "isOnline": true} }
+              }
+            }
+          },
+          "cityList": {
+            "args": {
+              "countryCode": {
+                "documentation": {"example": "BY"}
+              }
+            }
+          },
+          "cityAverage": {
+            "args": {
+              "filter": {
+                "documentation": { "example": {"city": "'Homiel'", "interval_m": 30} }
+              }
+            }
+          },
+          "cityAverages": {
+            "args": {
+              "filter": {
+                "documentation": { "example": {"city": "'Вiцебск'",   "t_from": "'2021-09-07T01:08:03.420Z'", "t_to": "'2021-10-08T01:08:03.420Z'", "interval_m": 30} }
+              }
+            }
+          }
+        }
+      },
+      "Mutation": {
+        "documentation": {"undocumented": true},
+        "fields": {
+          "sayHello": {
+            "documentation": {"undocumented": true},
+            "args": {
+              "name": {
+                "documentation": {"example": "Krampus", "undocumented": true}
+              }
+            }
+          },
+          "authGoogle": {
+            "documentation": {"undocumented": true},
+            "args": {
+              "accessTtoken": {
+                "documentation": {"undocumented": true, "example": "ya44.ajhF8J7Fndsg09_,thV_arj55G7OCGW_FN8uNG9Kf4Db70_iF8f7OPxADlkjLKj7GFs22joiKZktViII8nG04CawDE"}
+              }
+            }
+          }
+        }
+      }
+    },
+    "INPUT_OBJECT": {
+      "TimeSpan": {
+        "inputFields": {
+          "t_from": {
+            "documentation": { "example": "2021-09-07T01:08:03.420Z"}
+          },
+          "t_to": {
+            "documentation": { "example": "2021-10-07T01:08:03.420Z"}
+          }
+        }
+      },
+      "AuthInput": {
+        "documentation": { "undocumented": true },
+        "inputFields": {
+          "accessToken": {
+            "documentation": {"undocumented": false, "example": "ya44.ajhF8J7Fndsg09_thV_arj55G7OCGW_FN8uNG9Kf4Db70_iF8f7OPxADlkjLKj7GFs22joiKZktViII8nG04CawDE"}
+          }
+        }
+      },
+      "LocationFilter": { 
+        "inputFields": {
+          "_id": {
+            "documentation": { "example": "BY05001023"}
+          },
+          "name": {
+            "documentation": { "example": "Serabranka"}
+          }
+        }
+      },
+      "LocationsFilter": { 
+        "inputFields": {
+          "_id": {
+            "documentation": { "example": "BY01001045"}
+          },
+          "cityId": {
+            "documentation": { "example": "BY01001"}
+          },
+          "city": {
+            "documentation": { "examples": ["Брэст", "Брест", "Brest"]}
+          },
+          "countryCode": {
+            "documentation": { "example": "BY"}
+          },
+          "isOnline": {
+            "documentation": { "example": true}
+          },
+          "name": {
+            "documentation": { "example": "Тэхнапарк"}
+          }
+        }
+      },
+      "LastFilter": {
+        "inputFields": {
+          "city": {
+            "documentation": { "example": "Брэст"}
+          },
+          "interval_d": {
+            "documentation": { "example": 0}
+          },
+          "interval_h": {
+            "documentation": { "example": 0}
+          },
+          "interval_m": {
+            "documentation": { "example": 15}
+          }
+        }
+      },
+      "MeanFilter": {
+        "inputFields": {
+          "city": {
+            "documentation": { "example": "Brest"}
+          },
+          "t_from": {
+            "documentation": { "example": "2021-09-07T01:08:03.420Z"}
+          },
+          "t_to": {
+            "documentation": { "example": "2021-10-08T01:08:03.420Z"}
+          },
+          "interval_d": {
+            "documentation": { "example": 0}
+          },
+          "interval_h": {
+            "documentation": { "example": 0}
+          },
+          "interval_m": {
+            "documentation": { "example": 30}
+          }
+        }
+      }
+    },
+    "SCALAR": {
+      "DateTime": {
+        "documentation": { "example": "\"2020-10-07T01:08:03.420Z\"", "undocumented": true }
+      },
+      "Boolean": {
+        "documentation": { "undocumented": true }
+      },
+      "Float": {
+        "documentation": { "undocumented": true }
+      },
+      "Int": {
+        "documentation": { "undocumented": true }
+      },
+      "Object": {
+        "documentation": { "undocumented": true }
+      },
+      "String": {
+        "documentation": { "undocumented": true }
+      },
+      "ISODate": {
+        "documentation": { "example": "\"2020-10-07T01:08:03.420Z\"" }
+      }
+    },
+    "ENUM":{
+    "Sensor": {
+      "documentation": { "undocumented": true }
+      },
+      "TimeFilter": {
+        "documentation": { "undocumented": true }
+      }
+    }
+  }

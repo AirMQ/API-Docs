@@ -1,0 +1,206 @@
+directive @isAuthenticated on OBJECT | FIELD_DEFINITION
+#directive @isHidden on OBJECT | FIELD_DEFINITION | ENUM
+directive @undocumented on | OBJECT | FIELD_DEFINITION | ENUM
+
+"A custom scalar that returns time data as JavaScript DateTime object"
+    scalar DateTime
+    
+"A custom scalar that returns data as a generic JavaScript Object. Data will be returned as a String, when data is published as a simple string."
+    scalar Object
+"A custom scalar that returns date and time in ISO 8601 format"
+   scalar ISODate
+
+
+"Object containing sensor location info and sensor data"
+   type Location  { 
+  "Location ID"
+    _id: String
+  "City name in English"
+    city: String
+  "Location name"
+    name: String
+  "Location online state"
+    isOnline: Boolean
+  "Location latitude"
+    latitude: Float
+  "Location longitude"
+    longitude: Float
+  "Location telemetry info"
+    status: Status
+  "Returns current measurements. Should be supplied with interval argument from [`TimeSpan`]({{Types.TimeSpan}}) input filter"
+    currentValue (input: TimeSpan): SensorData
+  "Returns series of measurements. Should be supplied with [`TimeSpan`]({{Types.TimeSpan}}) input filter"
+    timeSeries (input: TimeSpan): [SensorData]
+    }
+
+"Sensor telemetry"
+   type Status {
+  "WiFi signal strength, dB"
+     RSSI: Int
+  "Sensor firmware version"
+     build: String
+  "Location uptime, minutes"
+     uptime: Int
+   }
+
+
+" Sensor values"
+   type  SensorData {
+"Time in ISO 8601 format, UTC time"
+     time: ISODate
+"Temperature, °C"
+     Temp: Float
+"Relative humidity, %"
+     Hum: Float
+"Air pressure, hPa"
+     Press: Float
+"PM1 particulate matter, μg/m³"
+     PMS1: Float
+"PM2.5 particulate matter, μg/m³"
+     PMS25: Float
+"PM10 particulate matter, μg/m³"
+     PMS10: Float
+#     PPM: Float
+#     eCO2: Float
+#     TVOC: Float
+"Ambient radioactivity, μSv/h"
+     Count: Float
+   }
+
+   type AuthResponse {
+     token: String
+     name: String
+     email: String
+     id: String
+   }
+
+"City details"
+   type City {
+  "City id"
+     _id: String
+  "2-symbol country code"
+     countryCode: String
+  "CityName object"
+     cityName: CityName
+  "Number of sensor locations within city boundaries"
+     locationCount: Int
+   }
+
+"City Names"
+   type CityName {
+  "City name in belarusian"
+     be: String
+  "City name in russian"
+     ru: String
+  "City name in english"
+     en: String
+   }
+
+"Single location filter"
+   input LocationFilter{
+  "Location id"
+    _id: String
+  "Location name"
+    name: String
+   }
+
+"Multiple locations filter"
+   input LocationsFilter{
+  "Location id"
+    _id: String
+  "City name in any language"
+    city: String
+  "2-symbol country code"
+    countryCode: String
+  "Show only online or offline locations"
+    isOnline: Boolean
+   }
+
+"Time span and interval"
+  input TimeSpan{
+  "Start time in ISO 8601 format"
+      t_from: ISODate
+  "End time in ISO 8601 format"
+      t_to: ISODate
+  "Averaging interval, days"
+      interval_d: Int=0
+  "Averaging interval, hours"
+      interval_h: Int=0
+  "Averaging interval, minutes, default = 15"
+      interval_m: Int=15
+    }
+
+"Input values to filter the query"
+  input LastFilter{
+    "City name in any (be, ru, en) language"
+     city: String
+    "Averaging interval, days"
+    interval_d: Int=0
+    "Averaging interval, hours"
+    interval_h: Int=0
+    "Averaging interval, minutes, default = 15"
+    interval_m: Int=15
+  }
+
+"Input values to filter the query. Mandatory fields are marked with `!`"
+  input MeanFilter{
+    "City name in any (be, ru, en) language"
+    city: String
+    "Start time in ISO 8601 format. Mandatory"
+    t_from: ISODate!
+    "End time in ISO 8601 format. Mandatory"
+    t_to: ISODate!
+    "Averaging interval, days"
+    interval_d: Int=0
+    "Averaging interval, hours"
+    interval_h: Int=0
+    "Averaging interval, minutes, default = 15"
+    interval_m: Int=15
+  }
+
+  input AuthInput {
+    uid: String
+    accessToken: String!
+  }
+
+  enum Sensor{
+    DUST
+    TEMPERATURE
+    HUMIDITY
+    PRESSURE
+    RADIOACTIVITY
+  }
+
+  enum TimeFilter{
+    HOUR
+    DAY
+    WEEK
+    MONTH
+  }
+
+   type Query {
+  "List of all cities in the country with AirMQ sensors installed"
+    cityList(countryCode: String): [City]
+  "Query for single sensor location. Returns location info and sensor data. "
+  #"`Markdown` and reference interpolation like [`[String!]!`]({{Types.String}}) are supported"
+    location(filter: LocationFilter): Location 
+   "Query for multiple sensor locations. Returns array of location info and sensor data"
+    locations(filter: LocationsFilter): [Location]
+  "Query for current weighted values per city or id list"
+    cityAverage(filter: LastFilter): SensorData
+  "Time series of average values per city or id list"
+    cityAverages(filter: MeanFilter): [SensorData]  
+    
+
+  }
+
+  type Mutation {
+    sayHello(name: String!): String!
+    authFacebook(input: AuthInput!): AuthResponse
+    authGoogle(input: AuthInput!): AuthResponse 
+   }
+
+   schema {
+   query: Query
+   mutation: Mutation
+  }

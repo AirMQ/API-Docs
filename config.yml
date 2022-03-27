@@ -1,0 +1,73 @@
+spectaql:
+  logoFile: ./fixtures/AirMQ1.png
+  faviconFile: ./fixtures/AirMQ.png
+
+introspection:
+#  url: https://api.airmq.cc
+
+
+  schemaFile: ./schema/api.gql
+  metadataFile: ./data/metadata.json
+#  dynamicExamplesProcessingModule: ./examples/customizations/examples
+
+  queriesDocumentedDefault: true
+  queryDocumentedDefault: true
+  queryArgDocumentedDefault: true
+  hideQueriesWithUndocumentedReturnType: false
+
+  mutationsDocumentedDefault: true
+  mutationDocumentedDefault: true
+  mutationArgDocumentedDefault: true
+  hideMutationsWithUndocumentedReturnType: false
+
+  typesDocumented: true
+  typeDocumentedDefault: true
+  fieldDocumentedDefault: true
+  argDocumentedDefault: true
+  hideFieldsWithUndocumentedReturnType: false
+
+
+  
+
+
+
+
+
+
+
+
+
+info:
+  x-htmlTitle: AirMQ API Docs
+  title: AirMQ GraphQL API Documentation
+  description: 
+    This documentation contains description of all API queries, responses and respective data types. <br><br>   
+    All requests to the API are POST.<br><br>    
+    Please expect upcoming blog post with API usage examples and best practices.<br><br> 
+    <a href="http://t.me/airmq" target="_blank">AirMQ Telegram channel</a> is a good place to ask questions and get answers.<br><br><br>
+
+  
+  termsOfService: https://api-docs.airmq.cc/terms 
+  contact:
+    name: AirMQ Team
+    url: http://airmq.by
+    email: info@airmq.by
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  x-introItems:
+    # Can be a Title (for the Nav panel) + URL to simply add a link to somewhere
+    - title: Playground
+      description: For testing purposes, API data can be accessed interactively with web-based <a href="https://www.apollographql.com/docs/apollo-server/v2/testing/graphql-playground" target="_blank">GraphQL Playground IDE</a>  using following URL&#58;  <a href="https://api.airmq.cc/playground" target="_blank">https://api.airmq.cc/playground</a>
+    - title: Authorization
+      description: This API uses token-based authorization. All requests must supply an HTTP `Authorization` header with provided token as payload. To request a token, please apply  to our <a href="http://t.me/airmq" target="_blank">Telegram channel</a>.
+
+
+servers:
+  - url: https://api.airmq.cc
+    description: Public API
+    production: true
+
+  - url: https://api.airmq.cc/playground
+    description: GraphQL Playground interface
+    production: true
